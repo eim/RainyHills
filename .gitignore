@@ -1,4 +1,9 @@
 *.class
+# build files
+**/target/
+**/nbproject/
+
+nb-configuration.xml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
