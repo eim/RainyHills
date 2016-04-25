@@ -1,0 +1,24 @@
+1)
+If you will see the next message you have to install glassfish 4.1.1 into your computer
+and set environment variable GLASSFISH_HOME.
+
+> [ERROR] Failed to execute goal org.glassfish.maven.plugin:maven-glassfish-plugin:2.1:undeploy
+> (gf-undeploy) on project SolverEAR-ear: The parameters 'glassfishDirectory' for goal
+> org.glassfish.maven.plugin:maven-glassfish-plugin:2.1:undeploy are missing or invalid -> [Help 1]
+
+2)
+Password for the admin user should be empty (as by default).
+If you added "bin" folder from glassfish server into the PATH variable it would be very useful.
+
+3)
+Module SolverEAR-itest
+command for execute integration tests:
+> mvn integration-test
+
+4)
+Module SolverEAR-ear
+command for undeploying EAR from the server:
+> mvn -Denv=dev clean
+command for deploying EAR into the server:
+> mvn -Denv=dev package
+I added plugin into different profile.

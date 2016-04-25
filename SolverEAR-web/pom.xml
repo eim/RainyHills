@@ -16,14 +16,14 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
     </properties>
-    
+
     <repositories>
         <repository>
           <id>central</id>
           <name>bintray</name>
           <url>http://jcenter.bintray.com</url>
         </repository>
-      </repositories>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -46,11 +46,12 @@
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-json</artifactId>
             <version>1.19.1</version>
-	</dependency>        
+	      </dependency>
         <dependency>
             <groupId>org.eim.javaeetest</groupId>
             <artifactId>SolverEAR-ejb</artifactId>
             <version>${project.version}</version>
+            <!-- <scope>test</scope> -->
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -106,7 +107,7 @@
             <artifactId>jersey-test-framework-provider-jetty</artifactId>
             <version>${jersey2.version}</version>
             <scope>test</scope>
-        </dependency>  
+        </dependency>
         <dependency>
             <groupId>com.sun.jersey.jersey-test-framework</groupId>
             <artifactId>jersey-test-framework-embedded-glassfish</artifactId>

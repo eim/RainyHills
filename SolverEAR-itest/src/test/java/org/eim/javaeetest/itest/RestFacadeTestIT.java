@@ -32,23 +32,23 @@ import static org.junit.Assert.assertEquals;
  * @author eim
  */
 @RunWith(Arquillian.class)
-public class RestFacadeTest { 
+public class RestFacadeTestIT { 
     /**
      * Deploy existing ear file into the embedded server.
-     * @return 
+     * @return
      */
     @Deployment
     public static EnterpriseArchive createTestArchive() {
         EnterpriseArchive ear = ShrinkWrap.create(ZipImporter.class, "SolverEAR-ear-1.0-SNAPSHOT.ear")
             .importFrom(new File("../SolverEAR-ear/target/SolverEAR-ear-1.0-SNAPSHOT.ear")).as(EnterpriseArchive.class) ;
         return ear;
-    } 
+    }
 
     /**
      * Testing volume calculator.
-     * 
+     *
      * @param deploymentUrl - base url address.
-     * @throws Exception 
+     * @throws Exception
      */
     @RunAsClient
     @Test
@@ -68,9 +68,9 @@ public class RestFacadeTest {
 
     /**
      * Testing echo message.
-     * 
+     *
      * @param deploymentUrl - base url.
-     * @throws Exception 
+     * @throws Exception
      */
     @RunAsClient
     @Test
@@ -84,6 +84,6 @@ public class RestFacadeTest {
         String expResult = "\""+SolverService.TEST_MESSAGE+"\"";
         assertEquals("Wrong response message",expResult,result);
     }
-    
-    
+
+
 }

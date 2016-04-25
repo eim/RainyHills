@@ -14,7 +14,7 @@
         <version.org.jboss.arquillian>1.0.0.Alpha5</version.org.jboss.arquillian>
         <version.org.glassfish.embedded>3.1-b41</version.org.glassfish.embedded>
     </properties>
-    
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -41,7 +41,7 @@
             <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
-        
+
         <dependency>
             <groupId>org.eim.javaeetest</groupId>
             <artifactId>SolverEAR-web</artifactId>
@@ -156,6 +156,24 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+
+    <build>
+      <plugins>
+        <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-failsafe-plugin</artifactId>
+         <version>2.15</version>
+         <executions>
+           <execution>
+             <goals>
+               <goal>integration-test</goal>
+               <goal>verify</goal>
+             </goals>
+           </execution>
+         </executions>
+       </plugin>
+      </plugins>
+    </build>
 
     <profiles>
         <profile>

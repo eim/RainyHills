@@ -12,9 +12,14 @@
     <packaging>ear</packaging>
 
     <name>SolverEAR-ear</name>
-  
-    <build>
-        <plugins>
+    <profiles>
+      <profile>
+        <id>test</id>
+        <activation>
+          <activeByDefault>true</activeByDefault>
+        </activation>
+        <build>
+          <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -29,47 +34,63 @@
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.glassfish.maven.plugin</groupId>
-                <artifactId>maven-glassfish-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <id>gf-undeploy</id>
-                        <goals>
-                            <goal>undeploy</goal>
-                        </goals>
-                        <phase>clean</phase>
-                    </execution>
-                    <execution>
-                        <id>gf-deploy</id>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <user>${glassfish.username}</user>
-                    <glassfishDirectory>${glassfish.directory}</glassfishDirectory>
-                    <domainDirectory>${glassfish.directory}/glassfish/domains/</domainDirectory>
-                    <passwordFile>${basedir}/glassfishpasswordfile</passwordFile>
-                    <domain>
-                        <name>${glassfish.domain}</name>
-                        <adminPort>${glassfish.adminport}</adminPort>
-                        <httpPort>${glassfish.httpport}</httpPort>
-                        <httpsPort>${glassfish.httpsport}</httpsPort>
-                    </domain>
-                    <components>
-                        <component>
-                            <name>SolverEAR-ear</name>
-                            <artifact>target/SolverEAR-ear-${project.version}.ear</artifact>
-                        </component>
-                    </components>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+          </plugins>
+        </build>
+      </profile>
+      <profile>
+        <id>dev</id>
+        <activation>
+          <property>
+            <name>env</name>
+            <value>dev</value>
+          </property>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.glassfish.maven.plugin</groupId>
+                    <artifactId>maven-glassfish-plugin</artifactId>
+                    <version>2.1</version>
+                    <executions>
+                        <execution>
+                            <id>gf-undeploy</id>
+                            <goals>
+                                <goal>undeploy</goal>
+                            </goals>
+                            <phase>clean</phase>
+                        </execution>
+                        <execution>
+                            <id>gf-deploy</id>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                            <phase>package</phase>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <user>${glassfish.username}</user>
+                        <glassfishDirectory>${glassfish.directory}</glassfishDirectory>
+                        <domainDirectory>${glassfish.directory}/glassfish/domains/</domainDirectory>
+                        <passwordFile>${basedir}/glassfishpasswordfile</passwordFile>
+                        <domain>
+                            <name>${glassfish.domain}</name>
+                            <adminPort>${glassfish.adminport}</adminPort>
+                            <httpPort>${glassfish.httpport}</httpPort>
+                            <httpsPort>${glassfish.httpsport}</httpsPort>
+                        </domain>
+                        <components>
+                            <component>
+                                <name>SolverEAR-ear</name>
+                                <artifact>target/SolverEAR-ear-${project.version}.ear</artifact>
+                            </component>
+                        </components>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+      </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.eim.javaeetest</groupId>
